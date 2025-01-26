@@ -53,4 +53,10 @@ public class PlayerMovement : MonoBehaviour
             moveDirection = Vector3.right;
         }
     }
+    public void GrowPlayer(float growthAmount)
+    {
+        transform.localScale += new Vector3(growthAmount, growthAmount, 0f);
+        // Optional speed adjustment:
+        moveSpeed = Mathf.Clamp(moveSpeed - (growthAmount * 0.2f), 3f, 10f);
+    }
 }
