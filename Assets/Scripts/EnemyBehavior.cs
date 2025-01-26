@@ -64,7 +64,7 @@ public class EnemyBehavior : MonoBehaviour
 			horizontal = false;
 		}
 		moveDirection = Vector3.zero;
-		if(level < PlayerLevel.playerLevel){
+		if(level <= PlayerLevel.playerLevel){
 			if(directionChoice == 0) {
 				moveDirection = Vector3.up;
 			}
@@ -150,7 +150,7 @@ public class EnemyBehavior : MonoBehaviour
         if(timer >= switchMovementTime){
         	setMovement();
         }
-        if(PlayerLevel.playerLevel <= level){
+        if(PlayerLevel.playerLevel < level){
            	HandleDirection();
         }
     }

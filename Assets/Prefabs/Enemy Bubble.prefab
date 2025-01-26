@@ -178,10 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d16c0e10110141fdac685428bcce981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverScene: 1
+  gameOverScene: 2
   consumableColor: {r: 0.003921569, g: 0.7882353, b: 1, a: 0.53333336}
   chaseColor: {r: 0, g: 0.06681795, b: 0.6037736, a: 1}
-  chanceToBeConsumable: 67
+  chanceToBeConsumable: 75
   minLevelAbove: 1
   maxLevelAbove: 6
   minMovementSpeed: 6

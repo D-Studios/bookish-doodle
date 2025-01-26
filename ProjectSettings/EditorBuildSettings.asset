@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: d8f870bd8cf2e4004ac955d32acfd473
+  - enabled: 1
     path: Assets/Scenes/Devang_Scene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Devang_GameOverScreen.unity
     guid: a91c5549563494a6b8be06a17da72136
+  - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
+    guid: 849f44a4970894763bf0644e702a7d07
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: aa93906f579664803869540f61b0e352
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
