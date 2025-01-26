@@ -104,7 +104,7 @@ public class EnemyBehavior : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
     	if(other.gameObject.CompareTag("Player")){
     		if(level <= PlayerLevel.playerLevel){
-    			PlayerLevel.playerLevel += level;
+    			PlayerLevel.playerLevel += 1;
     			Destroy(gameObject);
     		}
     		if(level>PlayerLevel.playerLevel){
