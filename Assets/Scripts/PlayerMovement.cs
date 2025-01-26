@@ -11,10 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 minClamp;
     public Vector2 maxClamp;
 
-    void Start()
+    void Awake()
     {
         // Get the Rigidbody2D component attached to the player
         rb = GetComponent<Rigidbody2D>();
+        PlayerLevel.playerLevel = 1;
     }
 
     void Update()

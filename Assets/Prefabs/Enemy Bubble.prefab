@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1577537618406043991}
   m_Layer: 0
   m_Name: Enemy Bubble
-  m_TagString: Untagged
+  m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.8734226, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.8734226, b: 1, a: 0.5529412}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -179,12 +179,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScene: 1
-  consumableColor: {r: 0.003921569, g: 0.7882353, b: 1, a: 1}
+  consumableColor: {r: 0.003921569, g: 0.7882353, b: 1, a: 0.53333336}
   chaseColor: {r: 0, g: 0.06681795, b: 0.6037736, a: 1}
-  level: 1
+  chanceToBeConsumable: 50
+  minLevelAbove: 1
+  maxLevelAbove: 6
   minMovementSpeed: 6
   maxMovementSpeed: 10
   switchMovementTime: 1
   acceptableOffset: 1
+  notCollidableOnStartTime: 1
   minClamp: {x: -20, y: -20}
   maxClamp: {x: 20, y: 20}

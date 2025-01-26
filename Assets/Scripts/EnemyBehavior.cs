@@ -12,8 +12,16 @@ public class EnemyBehavior : MonoBehaviour
 	[SerializeField]
 	Color chaseColor;
 
-	[SerializeField]
 	int level;
+
+	[SerializeField]
+	int chanceToBeConsumable;
+
+	[SerializeField]
+	int minLevelAbove = 1;
+
+	[SerializeField]
+	int maxLevelAbove = 3;
 
 	[SerializeField]
 	float minMovementSpeed = 4f;
@@ -26,6 +34,9 @@ public class EnemyBehavior : MonoBehaviour
 
 	[SerializeField]
 	float acceptableOffset = 0.5f;
+
+	[SerializeField]
+	float notCollidableOnStartTime = 1f;
 
 	bool horizontal;
 
@@ -73,7 +84,14 @@ public class EnemyBehavior : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		setMovement();
 		player = GameObject.FindGameObjectWithTag("Player").transform;
-		GetComponent<SpriteRenderer>().color = chaseColor;
+
+		int enemyTypeChoice = Random.Range(0, 100);
+		if(enemyTypeChoice < chanceToBeConsumable){
+			level = 1;
+			return;
+		}
+		level = PlayerLevel.playerLevel + Random.Range(minLevelAbove, maxLevelAbove+1);
+		GetComponent<CircleCollider2D>().enabled = false;
 	}
 
 	void HandleDirection()
@@ -104,8 +122,9 @@ public class EnemyBehavior : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
     	if(other.gameObject.CompareTag("Player")){
     		if(level <= PlayerLevel.playerLevel){
-    			PlayerLevel.playerLevel += 1;
-    			Destroy(gameObject);
+    			PlayerLevel.playerLevel = PlayerLevel.playerLevel + 1;
+    			GetComponent<CircleCollider2D>().enabled = false;
+    			Destroy(gameObject, 0.1f);
     		}
     		if(level>PlayerLevel.playerLevel){
     			SceneManager.LoadScene(gameOverScene);
@@ -116,15 +135,22 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    	if(PlayerLevel.playerLevel < level){
+    		GetComponent<SpriteRenderer>().color = chaseColor;
+    	}
+    	if(PlayerLevel.playerLevel >= level){
+    		GetComponent<SpriteRenderer>().color = consumableColor;
+    	}
         timer+=Time.deltaTime;
+        if(timer >= notCollidableOnStartTime){
+        	GetComponent<CircleCollider2D>().enabled = true;
+        }
         if(timer >= switchMovementTime){
         	setMovement();
         }
-        if(PlayerLevel.playerLevel >= level){
-        	GetComponent<SpriteRenderer>().color = consumableColor;
-           	return;
+        if(PlayerLevel.playerLevel <= level){
+           	HandleDirection();
         }
-       	HandleDirection();
     }
 
     void FixedUpdate(){

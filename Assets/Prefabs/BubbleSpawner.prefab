@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e2a950f5342394c8de41dcb2ecdbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubblePrefab: {fileID: 8697398632487875861, guid: c767a37039452e44d9971c8e861916d7, type: 3}
-  spawnInterval: 2
-  maxBubbles: 20
-  spawnAreaMin: {x: -8, y: -4}
-  spawnAreaMax: {x: 8, y: 4}
-  minBubbleSize: 0.5
-  maxBubbleSize: 1.5
-  playerGrowthAmount: 0.1
+  bubblePrefab: {fileID: 7632930383430878425, guid: d9bafabe2cffa436d91e35af4da26882, type: 3}
+  spawnInterval: 1
+  maxBubbles: 40
+  spawnAreaMin: {x: -20, y: -20}
+  spawnAreaMax: {x: 20, y: 20}
+  minBubbleSize: 2
+  maxBubbleSize: 6
+  playerGrowthAmount: 0.2
