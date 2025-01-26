@@ -4,12 +4,13 @@ using TMPro;
 public class Score : MonoBehaviour
 {
     public TextMeshProUGUI mainText; // Reference to the UI Text element
-    private int timer = 0; // Timer variable to track the score
+    public static int timer = 0; // Timer variable to track the score
     private float elapsedTime = 0; // Accumulated time for updating the timer
 
     // Start is called before the first frame update
     void Start()
     {
+        timer = 0;
         if (mainText != null)
         {
             mainText.text = "Timer: " + timer;
