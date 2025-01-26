@@ -5,6 +5,7 @@ public class BubbleSpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
     public GameObject bubblePrefab;
+    public static BubbleSpawner bubbleSpawner;
     public float spawnInterval = 2f;
     public int maxBubbles = 20;
     public Vector2 spawnAreaMin = new Vector2(-8, -4);
@@ -16,7 +17,12 @@ public class BubbleSpawner : MonoBehaviour
     public float playerGrowthAmount = 0.1f;
     
     private int currentBubbles = 0;
-    
+
+    private void Awake()
+    {
+        bubbleSpawner = this;
+    }
+
     void Start()
     {
         StartCoroutine(SpawnBubbles());
@@ -47,12 +53,12 @@ public class BubbleSpawner : MonoBehaviour
                 rb.gravityScale = 0;
                 rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
-                CircleCollider2D collider = bubble.GetComponent<CircleCollider2D>() ?? bubble.AddComponent<CircleCollider2D>();
-                collider.isTrigger = true;
+                CircleCollider2D theCollider = bubble.GetComponent<CircleCollider2D>() ?? bubble.AddComponent<CircleCollider2D>();
+                theCollider.isTrigger = true;
 
                 currentBubbles++;
-                BubbleBehavior behavior = bubble.AddComponent<BubbleBehavior>();
-                behavior.Initialize(this, playerGrowthAmount);
+                //BubbleBehavior behavior = bubble.AddComponent<BubbleBehavior>();
+                //behavior.Initialize(this, playerGrowthAmount);
             }
         }
     }
@@ -63,34 +69,34 @@ public class BubbleSpawner : MonoBehaviour
     }
 }
 
-public class BubbleBehavior : MonoBehaviour
-{
-    private BubbleSpawner spawner;
-    private float growthAmount;
+//public class BubbleBehavior : MonoBehaviour
+//{
+//    private BubbleSpawner spawner = BubbleSpawner.bubbleSpawner;
+//    private float growthAmount;
 
-    public void Initialize(BubbleSpawner spawnerRef, float growth)
-    {
-        spawner = spawnerRef;
-        growthAmount = growth;
-    }
+//    public void Initialize(BubbleSpawner spawnerRef, float growth)
+//    {
+//        spawner = spawnerRef;
+//        growthAmount = growth;
+//    }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.CompareTag("Player"))
-        {
-            // Grow the player
-            PlayerMovement player = other.GetComponent<PlayerMovement>();
-            if(player != null)
-            {
-                player.GrowPlayer(growthAmount);
-            }
+//    void OnTriggerEnter2D(Collider2D other)
+//    {
+//        if(other.CompareTag("Player"))
+//        {
+//            // Grow the player
+//            PlayerMovement player = other.GetComponent<PlayerMovement>();
+//            if(player != null)
+//            {
+//                player.GrowPlayer(growthAmount);
+//            }
             
-            // Notify spawner and destroy bubble
-            if(spawner != null)
-            {
-                spawner.BubbleDestroyed();
-            }
-            Destroy(gameObject);
-        }
-    }
-}
+//            // Notify spawner and destroy bubble
+//            if(spawner != null)
+//            {
+//                spawner.BubbleDestroyed();
+//            }
+//            Destroy(gameObject);
+//        }
+//    }
+//}

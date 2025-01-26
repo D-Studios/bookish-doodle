@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class EnemyBehavior : MonoBehaviour
 {
+	public AudioClip clip;
+    [SerializeField]
+    float growthAmount = 0.1f;
+
 	[SerializeField]
 	int gameOverScene = 0;
 
@@ -122,15 +126,29 @@ public class EnemyBehavior : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
     	if(other.gameObject.CompareTag("Player")){
-    		if(level <= PlayerLevel.playerLevel){
-    			PlayerLevel.playerLevel = PlayerLevel.playerLevel + 1;
-    			GetComponent<CircleCollider2D>().enabled = false;
-    			Destroy(gameObject, 0.1f);
-    		}
-    		if(level>PlayerLevel.playerLevel){
-    			SceneManager.LoadScene(gameOverScene);
-    		}
-    	}
+            GetComponent<AudioSource>().clip = clip;
+            GetComponent<AudioSource>().Play();
+            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.GrowPlayer(growthAmount);
+            }
+            BubbleSpawner.bubbleSpawner.BubbleDestroyed();
+            if (level <= PlayerLevel.playerLevel)
+            {
+                PlayerLevel.playerLevel = PlayerLevel.playerLevel + 1;
+                GetComponent<CircleCollider2D>().enabled = false;
+                Destroy(gameObject, 0.1f);
+            }
+            if (level > PlayerLevel.playerLevel)
+            {
+                Invoke("LoadScene", 0.1f);
+            }
+        }
+    }
+
+    void LoadScene(){
+    	SceneManager.LoadScene(gameOverScene);
     }
 
     // Update is called once per frame
