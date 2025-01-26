@@ -181,7 +181,7 @@ MonoBehaviour:
   gameOverScene: 1
   consumableColor: {r: 0.003921569, g: 0.7882353, b: 1, a: 0.53333336}
   chaseColor: {r: 0, g: 0.06681795, b: 0.6037736, a: 1}
-  chanceToBeConsumable: 50
+  chanceToBeConsumable: 67
   minLevelAbove: 1
   maxLevelAbove: 6
   minMovementSpeed: 6

@@ -45,6 +45,7 @@ public class EnemyBehavior : MonoBehaviour
 	float timer;
 	float moveSpeed;
 	Rigidbody2D rb;
+	bool canMove = false;
 	private Vector3 moveDirection = Vector3.zero;
 
 	[Header("Clamp Settings")]
@@ -63,7 +64,7 @@ public class EnemyBehavior : MonoBehaviour
 			horizontal = false;
 		}
 		moveDirection = Vector3.zero;
-		if(level>=PlayerLevel.playerLevel){
+		if(level < PlayerLevel.playerLevel){
 			if(directionChoice == 0) {
 				moveDirection = Vector3.up;
 			}
@@ -142,8 +143,9 @@ public class EnemyBehavior : MonoBehaviour
     		GetComponent<SpriteRenderer>().color = consumableColor;
     	}
         timer+=Time.deltaTime;
-        if(timer >= notCollidableOnStartTime){
+        if(timer >= notCollidableOnStartTime && !canMove){
         	GetComponent<CircleCollider2D>().enabled = true;
+        	canMove = true;
         }
         if(timer >= switchMovementTime){
         	setMovement();
@@ -154,7 +156,9 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     void FixedUpdate(){
-    	rb.linearVelocity = moveDirection * moveSpeed;
+    	if(canMove){
+    		rb.linearVelocity = moveDirection * moveSpeed;
+    	}
     	transform.position = new Vector2(Mathf.Clamp(transform.position.x, minClamp.x, maxClamp.x), Mathf.Clamp(transform.position.y, minClamp.y, maxClamp.y));
     }
 }
