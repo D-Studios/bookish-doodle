@@ -182,8 +182,8 @@ MonoBehaviour:
   consumableColor: {r: 0.003921569, g: 0.7882353, b: 1, a: 1}
   chaseColor: {r: 0, g: 0.06681795, b: 0.6037736, a: 1}
   level: 1
-  minMovementSpeed: 3
-  maxMovementSpeed: 5
+  minMovementSpeed: 6
+  maxMovementSpeed: 10
   switchMovementTime: 1
   acceptableOffset: 1
   minClamp: {x: -20, y: -20}

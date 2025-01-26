@@ -953,18 +953,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Bubble
       objectReference: {fileID: 0}
-    - target: {fileID: 3943747105363816997, guid: f97a8aea7ffe946f3959b33c06913fae, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3943747105363816997, guid: f97a8aea7ffe946f3959b33c06913fae, type: 3}
-      propertyPath: m_Color.g
-      value: 0.6110067
-      objectReference: {fileID: 0}
-    - target: {fileID: 3943747105363816997, guid: f97a8aea7ffe946f3959b33c06913fae, type: 3}
-      propertyPath: m_Color.r
-      value: 0.033018887
-      objectReference: {fileID: 0}
     - target: {fileID: 4364816888445161600, guid: f97a8aea7ffe946f3959b33c06913fae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
